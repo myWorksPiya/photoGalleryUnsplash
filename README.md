@@ -5,6 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Available Scripts
 
 In the project directory, you can run:
+<a href="https://myworkspiya.github.io/photoGalleryUnsplash/">Live Demo Link</a>
 
 ### `npm start`
 
