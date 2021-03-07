@@ -56,7 +56,7 @@ function App() {
 			}	
 		})
 		return () => window.removeEventListener('scroll', event)
-		// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line 
 	}, [])
 	const handleSubmit = (event) => {
 		event.preventDefault()
