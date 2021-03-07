@@ -7,17 +7,18 @@ const baseUrl = `https://api.unsplash.com/photos/`;
 const searchUrl = `https://api.unsplash.com/search/photos/`;
 
 function App() {
-	const [ loading, setLoading ] = useState(false)
-	const [ images, setImages ] = useState([])
-	const [ page, setPage ] = useState(0)
-	const [ query, setQuery ] = useState('')
+	const [ loading, setLoading ] = useState(false);
+	const [ images, setImages ] = useState([]);
+	const [ page, setPage ] = useState(0);
+	const [ query, setQuery ] = useState('');
+	
 	const fetchImages = async () => {
 		setLoading(true);
 		let url;
 		const urlPage = `&page=${page}`;
 		const urlQuery = `&query=${query}`;
 		//console.log(page);
-	
+
 		if (query) {
 			url = `${searchUrl}${clientID}${urlPage}${urlQuery}`;
 		} else {
@@ -25,44 +26,43 @@ function App() {
 		}
 
 		try {
-			const response = await fetch(url);
-			const data = await response.json();
-
+			const response = await fetch(url)
+			const data = await response.json()
 			setImages((oldImages) => {
 				if (query && page === 1) {
-					return data.results;
+					return data.results
 				} else if (query) {
-					return [ ...oldImages, ...data.results];
+					return [ ...oldImages, ...data.results ]
 				} else {
-					return [ ...oldImages, ...data ];
+					return [ ...oldImages, ...data ]
 				}
 			})
-			setLoading(false)
+			setLoading(false);
 		} catch (err) {
 			console.log(err);
 			setLoading(false);
 		}
-	}
+	};
 	useEffect(() => {
-		fetchImages()
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [page])
-	
+			fetchImages()
+			// eslint-disable-next-line 
+		},[page])
 	useEffect(() => {
 		const event = window.addEventListener('scroll', () => {
 			if ((!loading && window.innerHeight + window.scrollY) >= document.body.scrollHeight - 2) {
 				setPage((oldPage) => {
 					return oldPage + 1;
 				})
-			}
+			}	
 		})
 		return () => window.removeEventListener('scroll', event)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-const handleSubmit = (event) => {
-	event.preventDefault();
-	setPage(1);
-};
+	}, [])
+	const handleSubmit = (event) => {
+		event.preventDefault()
+		fetchImages()
+		setPage(1)		
+	}
 
 	return (
 		<main>
