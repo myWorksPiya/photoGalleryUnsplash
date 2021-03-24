@@ -24,7 +24,6 @@ function App() {
 		} else {
 			url = `${baseUrl}${clientID}${urlPage}`;
 		}
-
 		try {
 			const response = await fetch(url)
 			const data = await response.json()
@@ -60,7 +59,7 @@ function App() {
 	}, [])
 	const handleSubmit = (event) => {
 		event.preventDefault()
-		fetchImages()
+		//fetchImages()
 		setPage(1)		
 	}
 
