@@ -1,4 +1,4 @@
-React project showing photos for a searched Query
+React project using Unsplash API showing photos for a searched Query
 
 **Technologies Used**
 
